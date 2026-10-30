@@ -28,6 +28,7 @@ alias nv=nvim
 
 #Git
 alias gs="git status"
+alias gss="git status --short"
 alias ga="git add ."
 alias gc="git commit -m"
 alias gp="git push"
@@ -53,3 +54,9 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Zsh Syntax Highlighting (must be last)
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+
+# bun completions
+[ -s "/Users/oskalbarczyk/.bun/_bun" ] && source "/Users/oskalbarczyk/.bun/_bun"
+
+# opencode
+export PATH=/Users/oskalbarczyk/.opencode/bin:$PATH

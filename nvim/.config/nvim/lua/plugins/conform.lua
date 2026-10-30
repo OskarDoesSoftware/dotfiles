@@ -33,7 +33,6 @@ return {
         json = { "prettierd" },
         json5 = { "prettierd" },
         yaml = { "prettierd" },
-        markdown = { "prettierd" },
         toml = { "taplo" },
 
         -- Docker (compose files use the yaml.docker-compose filetype)
@@ -48,10 +47,8 @@ return {
           -- style follows a project ruleset if present, else PSR-12;
           -- --using-cache=no stops the .php-cs-fixer.cache file in the project
           args = function(_, ctx)
-            local cfg = vim.fs.find(
-              { ".php-cs-fixer.php", ".php-cs-fixer.dist.php" },
-              { upward = true, path = ctx.dirname }
-            )[1]
+            local cfg =
+              vim.fs.find({ ".php-cs-fixer.php", ".php-cs-fixer.dist.php" }, { upward = true, path = ctx.dirname })[1]
             local args = { "fix", "--using-cache=no" }
             table.insert(args, cfg and ("--config=" .. cfg) or "--rules=@PSR12")
             table.insert(args, "$FILENAME")

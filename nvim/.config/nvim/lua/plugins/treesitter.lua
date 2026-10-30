@@ -51,12 +51,6 @@ return {
           "php",
           "phpdoc",
 
-          --markdown & docs
-          "markdown",
-          "markdown_inline",
-          "jsdoc",
-          "mermaid",
-
           --Shell
           "bash",
 

@@ -105,12 +105,6 @@ return {
               -- LSP:
               "taplo",
 
-              --Markdown
-              --Linter:
-              "markdownlint",
-              --Formater:
-              --prettierd
-
               --Bash
               -- LSP:
               "bash-language-server",

@@ -49,7 +49,7 @@ return {
         filters = {
           dotfiles = false,
           git_ignored = false,
-          custom = { ".DS_Store", "node_modules", ".git" },
+          custom = { ".DS_Store", "node_modules", "^\\.git$" },
         },
         update_focused_file = {
           enable = true,

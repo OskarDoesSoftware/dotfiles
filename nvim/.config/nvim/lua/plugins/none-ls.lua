@@ -80,9 +80,6 @@ return {
           --python
           require "none-ls.diagnostics.ruff",
 
-          -- Markdown
-          null_ls.builtins.diagnostics.markdownlint,
-
           -- Docker
           null_ls.builtins.diagnostics.hadolint,
 
