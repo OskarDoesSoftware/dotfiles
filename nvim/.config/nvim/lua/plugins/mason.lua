@@ -41,7 +41,7 @@ return {
               --DAP:
               "js-debug-adapter", --node
               --Linter:
-              "eslint_d",
+              "oxlint",
               --Formater:
               "prettierd",
 
@@ -51,7 +51,7 @@ return {
               --DAP:
               --js-debug-adapter
               --Linter:
-              --eslint
+              --oxlint
               --Formater:
               --prettierd
 
@@ -97,7 +97,7 @@ return {
               --LSP:
               "json-lsp",
               --Linter:
-              --eslint
+              --oxlint
               --Formater:
               --prettierd
 

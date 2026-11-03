@@ -7,25 +7,6 @@ return {
       local null_ls = require "null-ls"
       local notify = require("utils").notify
 
-      local eslint_root_files = {
-        ".eslintrc",
-        ".eslintrc.js",
-        ".eslintrc.json",
-        ".eslintrc.cjs",
-        ".eslintrc.yaml",
-        ".eslintrc.yml",
-        "eslint.config.js",
-        "eslint.config.mjs",
-        "eslint.config.cjs",
-      }
-
-      local js_langs = {
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-      }
-
       local phpstan_root_files = {
         "phpstan.neon",
         "phpstan.neon.dist",
@@ -34,31 +15,7 @@ return {
 
       null_ls.setup {
         sources = {
-          -- JS/TS
-          require("none-ls.diagnostics.eslint_d").with {
-            condition = function(utils)
-              if not vim.tbl_contains(js_langs, vim.bo.filetype) then
-                return false
-              end
-              local enabled = utils.root_has_file(eslint_root_files)
-              if not enabled then
-                notify("null-ls", "ESLint skipped — no config found", vim.log.levels.WARN)
-              end
-              return enabled
-            end,
-          },
-          require("none-ls.code_actions.eslint_d").with {
-            condition = function(utils)
-              if not vim.tbl_contains(js_langs, vim.bo.filetype) then
-                return false
-              end
-              local enabled = utils.root_has_file(eslint_root_files)
-              if not enabled then
-                notify("null-ls", "ESLint code actions skipped", vim.log.levels.WARN)
-              end
-              return enabled
-            end,
-          },
+          -- JS/TS: linted by the oxlint LSP (see lsp.lua)
 
           -- CSS / SCSS
           -- null_ls.builtins.diagnostics.stylelint,

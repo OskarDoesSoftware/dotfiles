@@ -5,10 +5,16 @@ return {
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     opts = {
-      format_on_save = {
-        lsp_fallback = true,
-        timeout_ms = 3000,
-      },
+      format_on_save = function(bufnr)
+        -- apply oxlint autofixes first (synchronously), then prettierd formats the result
+        for _, client in ipairs(vim.lsp.get_clients { bufnr = bufnr, name = "oxlint" }) do
+          client:request_sync("workspace/executeCommand", {
+            command = "oxc.fixAll",
+            arguments = { { uri = vim.uri_from_bufnr(bufnr) } },
+          }, 1000, bufnr)
+        end
+        return { lsp_fallback = true, timeout_ms = 3000 }
+      end,
       formatters_by_ft = {
         -- Frontend languages
         javascript = { "prettierd" },

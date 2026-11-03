@@ -80,6 +80,7 @@ return {
       vim.lsp.enable {
         "clangd", --c/cpp
         "ts_ls", --JS/TS/TSX and JSX
+        "oxlint", --JS/TS linter (needs .oxlintrc.json or oxlint in package.json)
         "angularls", --angular
         "html", --html
         "emmet_ls", --html snippets
