@@ -47,3 +47,16 @@ node_modules/
 #jenv
 .java-version
 
+
+# Claude Code: allowlist only. ~/.claude holds private state (history, transcripts,
+# memory, sessions, caches), and ~/.claude.json holds account data. Never track those.
+claude/.claude/*
+!claude/.claude/settings.json
+!claude/.claude/CLAUDE.md
+!claude/.claude/agents/
+!claude/.claude/commands/
+!claude/.claude/skills/
+claude/.claude/skills/synced/
+**/.claude.json
+**/.claude.json.backup
+**/settings.local.json
