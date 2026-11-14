@@ -102,10 +102,10 @@ map("n", "<leader>wk", function()
   vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
 end, { desc = "whichkey query lookup" })
 
--- copilot
-map("n", "<leader>cpe", ":Copilot enable<CR>", { desc = "Copilot: Enable" })
-map("n", "<leader>cpd", ":Copilot disable<CR>", { desc = "Copilot: Disable" })
-map("n", "<leader>cps", ":Copilot status<CR>", { desc = "Copilot: Status" })
+-- AI completion (minuet-ai.nvim, local Ollama)
+map("n", "<leader>cpt", "<cmd>Minuet virtualtext toggle<CR>", { desc = "AI completion: Toggle" })
+map("n", "<leader>cpe", "<cmd>Minuet virtualtext enable<CR>", { desc = "AI completion: Enable" })
+map("n", "<leader>cpd", "<cmd>Minuet virtualtext disable<CR>", { desc = "AI completion: Disable" })
 
 --neotest
 map("n", "<leader>tn", function()
