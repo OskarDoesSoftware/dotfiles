@@ -38,6 +38,19 @@ return {
         clangd = {
           cmd = { "clangd", "--background-index", "--clang-tidy" },
         }, --c/cpp
+        arduino_language_server = {
+          cmd = {
+            "arduino-language-server",
+            "-cli-config",
+            vim.fn.expand "~/Library/Arduino15/arduino-cli.yaml",
+            "-fqbn",
+            "arduino:avr:uno",
+            "-cli",
+            "arduino-cli",
+            "-clangd",
+            vim.fn.stdpath "data" .. "/mason/bin/clangd",
+          },
+        }, --arduino (.ino); fqbn must match lua/arduino.lua
         phpactor = {
           init_options = {
             -- inlay hints (off by default for perf); phpactor has no return-type hints
@@ -79,6 +92,7 @@ return {
 
       vim.lsp.enable {
         "clangd", --c/cpp
+        "arduino_language_server", --arduino
         "ts_ls", --JS/TS/TSX and JSX
         "oxlint", --JS/TS linter (needs .oxlintrc.json or oxlint in package.json)
         "angularls", --angular

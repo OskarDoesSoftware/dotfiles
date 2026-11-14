@@ -127,6 +127,12 @@ return {
               --Formatter:
               "clang-format",
 
+              --Arduino
+              --LSP (wraps clangd, needs arduino-cli from brew):
+              "arduino-language-server",
+              --Formatter:
+              --clang-format
+
               --Docker
               --LSP:
               "dockerfile-language-server",
