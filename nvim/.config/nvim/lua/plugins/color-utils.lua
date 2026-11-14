@@ -1,7 +1,7 @@
 return {
   --colors utility
   {
-    "norcalli/nvim-colorizer.lua",
+    "catgoose/nvim-colorizer.lua",
     event = "BufReadPost",
     config = function()
       require("colorizer").setup {
@@ -12,7 +12,7 @@ return {
           names = false, -- "blue" or "red" supported?
           css = true, -- Enable all CSS features: rgb(...), hsl(...)
           mode = "background", -- foreground | background | virtualtext
-          tailwind = true,
+          tailwind = "both", -- name-based + colors reported by tailwindcss LSP
         },
       }
 

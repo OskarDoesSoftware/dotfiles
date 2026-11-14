@@ -58,6 +58,11 @@ map("n", "<C-\\>", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice messages", s
 map("n", "<Leader>sh", "<cmd>Shades<CR>", { desc = "Minty Shades" })
 map("n", "<Leader>hu", "<cmd>Huefy<CR>", { desc = "Minty Huefy" })
 
+--Emmet (expand in insert mode is <C-y>, see cmp.lua)
+map({ "n", "v" }, "<leader>we", function()
+  require("nvim-emmet").wrap_with_abbreviation()
+end, { desc = "Emmet: wrap with abbreviation" })
+
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })

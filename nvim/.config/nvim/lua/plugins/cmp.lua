@@ -103,6 +103,22 @@ return { --Code completion
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.close(),
+          -- show only emmet expansions for the abbreviation under the cursor
+          ["<C-y>"] = cmp.mapping(function()
+            cmp.complete {
+              config = {
+                sources = {
+                  {
+                    name = "nvim_lsp",
+                    entry_filter = function(entry)
+                      local client = entry.source.source.client
+                      return client ~= nil and client.name == "emmet_language_server"
+                    end,
+                  },
+                },
+              },
+            }
+          end, { "i" }),
           ["<CR>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,

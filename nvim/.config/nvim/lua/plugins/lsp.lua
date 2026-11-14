@@ -85,6 +85,27 @@ return {
             },
           },
         }, --python
+        angularls = {
+          -- only start inside angular projects; never for react .tsx
+          root_markers = { "angular.json" },
+          workspace_required = true,
+          filetypes = { "typescript", "html", "htmlangular" },
+        }, --angular
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              experimental = {
+                -- class completion inside clsx()/cn()/cva()/tw`` helpers
+                classRegex = {
+                  { "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                  { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                  { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                  "tw`([^`]*)",
+                },
+              },
+            },
+          },
+        }, --tailwind
       }
       for name, cfg in pairs(overrides) do
         vim.lsp.config(name, cfg)
@@ -97,7 +118,8 @@ return {
         "oxlint", --JS/TS linter (needs .oxlintrc.json or oxlint in package.json)
         "angularls", --angular
         "html", --html
-        "emmet_ls", --html snippets
+        "emmet_language_server", --html/jsx abbreviations
+        "tailwindcss", --tailwind classes (only attaches in tailwind projects)
         "lua_ls", --lua
         "cssls", --css/scss
         "lemminx", --xml

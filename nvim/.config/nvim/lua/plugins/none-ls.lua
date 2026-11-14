@@ -13,12 +13,38 @@ return {
         "phpstan.dist.neon",
       }
 
+      local stylelint_root_files = {
+        ".stylelintrc",
+        ".stylelintrc.json",
+        ".stylelintrc.yaml",
+        ".stylelintrc.yml",
+        ".stylelintrc.js",
+        ".stylelintrc.cjs",
+        ".stylelintrc.mjs",
+        "stylelint.config.js",
+        "stylelint.config.cjs",
+        "stylelint.config.mjs",
+        "stylelint.config.ts",
+      }
+
       null_ls.setup {
         sources = {
           -- JS/TS: linted by the oxlint LSP (see lsp.lua)
 
           -- CSS / SCSS
-          -- null_ls.builtins.diagnostics.stylelint,
+          null_ls.builtins.diagnostics.stylelint.with {
+            condition = function(utils)
+              local ft = vim.bo.filetype
+              if ft ~= "css" and ft ~= "scss" then
+                return false
+              end
+              local enabled = utils.root_has_file(stylelint_root_files)
+              if not enabled then
+                notify("null-ls", "stylelint skipped — no config found", vim.log.levels.WARN)
+              end
+              return enabled
+            end,
+          },
 
           -- YAML
           null_ls.builtins.diagnostics.yamllint.with {

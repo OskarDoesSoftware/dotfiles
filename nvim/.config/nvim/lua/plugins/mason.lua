@@ -58,8 +58,8 @@ return {
               --HTML
               --LSP:
               "html-lsp",
-              --Snippets:
-              "emmet-ls",
+              --Abbreviations:
+              "emmet-language-server",
               --Formater:
               --prettierd
 
@@ -67,9 +67,13 @@ return {
               --LSP:
               "css-lsp",
               --Linter:
-              --"stylelint",
+              "stylelint",
               --Formater:
               --prettierd
+
+              --Tailwind
+              --LSP:
+              "tailwindcss-language-server",
 
               --Lua
               --LSP:
